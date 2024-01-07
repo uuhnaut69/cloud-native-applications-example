@@ -1,0 +1,22 @@
+apiVersion: skaffold/v4beta8
+kind: Config
+metadata:
+  name: cloud-native-applications-example
+build:
+  artifacts:
+    - image: "uuhnaut69/store-api"
+      context: store-api
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        infer:
+          - "**./*"
+
+deploy:
+  helm:
+    releases:
+      - name: store-api
+        chartPath: helm/store-api
+        valuesFiles:
+          - helm/store-api/values.yaml
+        version: 0.1.0

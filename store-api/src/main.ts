@@ -1,16 +1,19 @@
 import { env } from '@app/env';
 import compression from '@fastify/compress';
 import helmet from '@fastify/helmet';
-import { ValidationPipe } from '@nestjs/common';
+import { ValidationPipe, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import {
   FastifyAdapter,
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { initializeTransactionalContext } from 'typeorm-transactional';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
+  initializeTransactionalContext();
+
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter({}),
@@ -21,6 +24,12 @@ async function bootstrap() {
       transform: true,
     }),
   );
+
+  app.setGlobalPrefix('api');
+
+  app.enableVersioning({
+    type: VersioningType.URI,
+  });
 
   const config = new DocumentBuilder()
     .setTitle('Store API')
@@ -35,7 +44,7 @@ async function bootstrap() {
 
   await app.register(helmet);
 
-  await app.listen(3000);
+  await app.listen(env.port);
 }
 
 bootstrap();

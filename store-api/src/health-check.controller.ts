@@ -1,4 +1,4 @@
-import { BaseResponse } from '@app/common/http/base.response';
+import { BaseResponse } from '@app/common/http/models/base.response';
 import { Controller, Get } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 

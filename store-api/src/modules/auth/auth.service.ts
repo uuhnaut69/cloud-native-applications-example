@@ -1,6 +1,7 @@
 import { compare } from '@app/common/utils/hashing.utils';
 import { env } from '@app/env';
 import { SignInRequest } from '@app/modules/auth/dtos/sign-in.request';
+import { JwtPayload } from '@app/modules/auth/types/jwt';
 import { RegisterUserRequest } from '@app/modules/user/dtos/register-user.request';
 import { User } from '@app/modules/user/models/user.entity';
 import { UserService } from '@app/modules/user/user.service';
@@ -53,7 +54,7 @@ export class AuthService {
   }
 
   private async generateAccessToken(user: User): Promise<string> {
-    const payload = {
+    const payload: JwtPayload = {
       sub: user.id,
       email: user.email,
       role: user.role,
@@ -66,7 +67,7 @@ export class AuthService {
   }
 
   private async generateRefreshToken(user: User): Promise<string> {
-    const payload = {
+    const payload: JwtPayload = {
       sub: user.id,
       email: user.email,
       role: user.role,

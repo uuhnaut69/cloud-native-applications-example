@@ -35,10 +35,18 @@ async function bootstrap() {
     .setTitle('Store API')
     .setDescription('The store API description')
     .setVersion(env.appVersion)
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('/swagger', app, document);
+  SwaggerModule.setup('/swagger', app, document, {
+    swaggerOptions: {
+      docExpansion: 'none',
+      filter: true,
+      showRequestDuration: true,
+      persistAuthorization: true,
+    },
+  });
 
   await app.register(compression);
 

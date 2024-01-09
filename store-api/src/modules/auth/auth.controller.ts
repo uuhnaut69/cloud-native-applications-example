@@ -1,10 +1,14 @@
 import { BaseResponse } from '@app/common/http/models/base.response';
 import { AuthService } from '@app/modules/auth/auth.service';
+import { CurrentUser } from '@app/modules/auth/decorators/current-user.decorator';
+import { ProfileResponse } from '@app/modules/auth/dtos/profile.response';
 import { SignInRequest } from '@app/modules/auth/dtos/sign-in.request';
 import { SignInResponse } from '@app/modules/auth/dtos/sign-in.response';
+import { AccessTokenGuard } from '@app/modules/auth/guards/access-token.guard';
 import { RegisterUserRequest } from '@app/modules/user/dtos/register-user.request';
-import { Body, Controller, Post } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { User } from '@app/modules/user/models/user.entity';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Authentication')
 @Controller({
@@ -40,5 +44,14 @@ export class AuthController {
         refreshTokenExpiresIn,
       ),
     );
+  }
+
+  @ApiBearerAuth()
+  @UseGuards(AccessTokenGuard)
+  @Get('/profile')
+  public async getCurrentProfile(
+    @CurrentUser() user: User,
+  ): Promise<BaseResponse<ProfileResponse>> {
+    return BaseResponse.success(new ProfileResponse(user));
   }
 }

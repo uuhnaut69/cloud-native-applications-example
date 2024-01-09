@@ -1,7 +1,7 @@
 import { env } from '@app/env';
 import compression from '@fastify/compress';
 import helmet from '@fastify/helmet';
-import { ValidationPipe, VersioningType } from '@nestjs/common';
+import { VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import {
   FastifyAdapter,
@@ -17,12 +17,6 @@ async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter({}),
-  );
-
-  app.useGlobalPipes(
-    new ValidationPipe({
-      transform: true,
-    }),
   );
 
   app.setGlobalPrefix('api');
@@ -42,7 +36,6 @@ async function bootstrap() {
   SwaggerModule.setup('/swagger', app, document, {
     swaggerOptions: {
       filter: true,
-      showRequestDuration: true,
       persistAuthorization: true,
     },
   });

@@ -1,4 +1,3 @@
-import { BaseResponse } from '@app/common/http/models/base.response';
 import { BaseApiResponse } from '@app/common/http/swagger/base-api-response.decorator';
 import { AuthService } from '@app/modules/auth/auth.service';
 import { CurrentUser } from '@app/modules/auth/decorators/current-user.decorator';
@@ -34,11 +33,8 @@ export class AuthController {
     example: 'ae35418e-41be-4738-a2ec-50fcd8b9569d',
   })
   @Post('/register')
-  public async registerNewUser(
-    @Body() request: RegisterUserRequest,
-  ): Promise<BaseResponse<string>> {
-    const data = await this.authService.registerNewUser(request);
-    return BaseResponse.success(data);
+  public async registerNewUser(@Body() request: RegisterUserRequest) {
+    return await this.authService.registerNewUser(request);
   }
 
   @BaseApiResponse({
@@ -47,22 +43,18 @@ export class AuthController {
     refType: SignInResponse,
   })
   @Post('/sign-in')
-  public async signIn(
-    @Body() request: SignInRequest,
-  ): Promise<BaseResponse<SignInResponse>> {
+  public async signIn(@Body() request: SignInRequest) {
     const {
       accessToken,
       accessTokenExpiresIn,
       refreshToken,
       refreshTokenExpiresIn,
     } = await this.authService.signIn(request);
-    return BaseResponse.success(
-      new SignInResponse(
-        accessToken,
-        accessTokenExpiresIn,
-        refreshToken,
-        refreshTokenExpiresIn,
-      ),
+    return new SignInResponse(
+      accessToken,
+      accessTokenExpiresIn,
+      refreshToken,
+      refreshTokenExpiresIn,
     );
   }
 
@@ -74,9 +66,7 @@ export class AuthController {
   })
   @UseGuards(AccessTokenGuard)
   @Get('/profile')
-  public async getCurrentProfile(
-    @CurrentUser() user: User,
-  ): Promise<BaseResponse<ProfileResponse>> {
-    return BaseResponse.success(new ProfileResponse(user));
+  public async getCurrentProfile(@CurrentUser() user: User) {
+    return new ProfileResponse(user);
   }
 }

@@ -1,4 +1,3 @@
-import { BaseResponse } from '@app/common/http/models/base.response';
 import { BaseApiResponse } from '@app/common/http/swagger/base-api-response.decorator';
 import { CategoryService } from '@app/modules/product/category.service';
 import { CategoryResponse } from '@app/modules/product/dtos/category.response';
@@ -20,12 +19,9 @@ export class CategoryController {
     refType: CategoryResponse,
   })
   @Get()
-  public async findAllCategories(): Promise<BaseResponse<CategoryResponse[]>> {
+  public async findAllCategories() {
     const categories: Category[] =
       await this.categoryService.findAllCategories();
-    const categoriesResponse = categories.map(
-      (category) => new CategoryResponse(category),
-    );
-    return BaseResponse.success(categoriesResponse);
+    return categories.map((category) => new CategoryResponse(category));
   }
 }

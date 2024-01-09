@@ -41,7 +41,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('/swagger', app, document, {
     swaggerOptions: {
-      docExpansion: 'none',
       filter: true,
       showRequestDuration: true,
       persistAuthorization: true,

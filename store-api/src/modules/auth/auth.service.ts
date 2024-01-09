@@ -34,9 +34,9 @@ export class AuthService {
       throw new UnauthorizedException();
     }
 
-    const matchedPassword = await compare(request.password, user.password);
+    const isMatchedPassword = await compare(request.password, user.password);
 
-    if (!matchedPassword) {
+    if (!isMatchedPassword) {
       throw new UnauthorizedException();
     }
 

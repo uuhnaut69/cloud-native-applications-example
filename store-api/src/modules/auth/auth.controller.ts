@@ -42,7 +42,6 @@ export class AuthController {
   }
 
   @BaseApiResponse({
-    status: HttpStatus.OK,
     summary: 'Sign in',
     schemaType: 'object',
     refType: SignInResponse,

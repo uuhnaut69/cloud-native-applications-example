@@ -1,9 +1,12 @@
 import { Category } from '@app/modules/product/models/category.entity';
+import { ProductImage } from '@app/modules/product/models/product-image.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
   ManyToMany,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -22,8 +25,18 @@ export class Product {
   @Column({ nullable: false, default: 0 })
   public quantity: number;
 
-  @ManyToMany(() => Category, (category) => category.products)
+  @ManyToMany(() => Category)
+  @JoinTable({
+    name: 'product_categories',
+    joinColumn: { name: 'productId', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'categoryId', referencedColumnName: 'id' },
+  })
   public categories: Category[];
+
+  @OneToMany(() => ProductImage, (image) => image.product, {
+    cascade: true,
+  })
+  public images: ProductImage[];
 
   @CreateDateColumn({ nullable: false })
   public createdAt: Date;

@@ -1,7 +1,6 @@
 import { BaseApiResponse } from '@app/common/decorators/base-api-response.decorator';
 import { CategoryService } from '@app/modules/product/category.service';
 import { CategoryResponse } from '@app/modules/product/dtos/category.response';
-import { Category } from '@app/modules/product/models/category.entity';
 import { Controller, Get } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
@@ -20,8 +19,6 @@ export class CategoryController {
   })
   @Get()
   public async findAllCategories() {
-    const categories: Category[] =
-      await this.categoryService.findAllCategories();
-    return categories.map((category) => new CategoryResponse(category));
+    return await this.categoryService.findAllCategories();
   }
 }

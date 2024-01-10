@@ -1,5 +1,13 @@
 export interface PaginationRequest {
-  page?: number;
+  pageNo?: number;
 
-  limit?: number;
+  pageSize?: number;
 }
+
+export interface SortableRequest {
+  orderField?: string;
+
+  orderDirection?: 'ASC' | 'DESC';
+}
+
+export type PaginationSortableRequest = PaginationRequest & SortableRequest;

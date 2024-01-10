@@ -1,3 +1,4 @@
+import { Pagination } from '@app/common/decorators/pagination.decorator';
 import { HttpStatus, Type, applyDecorators } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
@@ -18,6 +19,7 @@ type ApiResponseOptions<DTO extends Type<unknown>> = {
   summary?: string;
   security?: boolean;
   schemaType?: SchemaType;
+  pagination?: boolean;
   // DTO class
   refType: DTO;
   example?: any;
@@ -45,6 +47,10 @@ export const BaseApiResponse = <DTO extends Type<unknown>>(
       ApiUnauthorizedResponse({ description: 'Unauthorized' }),
       ApiForbiddenResponse({ description: 'Forbidden' }),
     );
+  }
+
+  if (options?.pagination) {
+    decorators.push(Pagination());
   }
 
   decorators.push(
@@ -83,6 +89,29 @@ export const BaseApiResponse = <DTO extends Type<unknown>>(
                 }),
             ...(options?.example && { example: options?.example }),
           },
+          ...(options?.pagination && {
+            pagination: {
+              type: 'object',
+              properties: {
+                totalItems: {
+                  type: 'number',
+                  example: 1,
+                },
+                totalPages: {
+                  type: 'number',
+                  example: 1,
+                },
+                pageNo: {
+                  type: 'number',
+                  example: 1,
+                },
+                pageSize: {
+                  type: 'number',
+                  example: 10,
+                },
+              },
+            },
+          }),
           errors: {
             type: 'array',
             items: {

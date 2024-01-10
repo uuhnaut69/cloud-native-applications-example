@@ -1,3 +1,4 @@
+import { CategoryResponse } from '@app/modules/product/dtos/category.response';
 import { Category } from '@app/modules/product/models/category.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -10,11 +11,12 @@ export class CategoryService {
     private readonly categoryRepository: Repository<Category>,
   ) {}
 
-  public async findAllCategories(): Promise<Category[]> {
-    return await this.categoryRepository.find({
+  public async findAllCategories(): Promise<CategoryResponse[]> {
+    const categories = await this.categoryRepository.find({
       order: {
         name: 'ASC',
       },
     });
+    return categories.map((category) => new CategoryResponse(category));
   }
 }

@@ -104,7 +104,7 @@ affinity: {}
 liveness:
   initialDelaySeconds: 30
   port: http
-  path: /health/check
+  path: /v1/health/check
   failureThreshold: 3
   successThreshold: 1
   timeoutSeconds: 30
@@ -113,7 +113,7 @@ liveness:
 readiness:
   initialDelaySeconds: 30
   port: http
-  path: /health/check
+  path: /v1/health/check
   failureThreshold: 3
   successThreshold: 1
   timeoutSeconds: 10

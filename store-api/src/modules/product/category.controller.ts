@@ -1,4 +1,4 @@
-import { BaseApiResponse } from '@app/common/http/swagger/base-api-response.decorator';
+import { BaseApiResponse } from '@app/common/decorators/base-api-response.decorator';
 import { CategoryService } from '@app/modules/product/category.service';
 import { CategoryResponse } from '@app/modules/product/dtos/category.response';
 import { Category } from '@app/modules/product/models/category.entity';

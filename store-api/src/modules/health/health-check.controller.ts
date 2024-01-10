@@ -1,9 +1,12 @@
-import { BaseApiResponse } from '@app/common/http/swagger/base-api-response.decorator';
+import { BaseApiResponse } from '@app/common/decorators/base-api-response.decorator';
 import { Controller, Get } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Health Check')
-@Controller()
+@Controller({
+  path: '/health/check',
+  version: '1',
+})
 export class HealthCheckController {
   @BaseApiResponse({
     summary: 'Get service health',
@@ -11,7 +14,7 @@ export class HealthCheckController {
     refType: String,
     example: 'Up',
   })
-  @Get('/health/check')
+  @Get()
   public getServiceHealth() {
     return 'Up';
   }

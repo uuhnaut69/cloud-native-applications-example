@@ -1,4 +1,4 @@
-import { BaseApiResponse } from '@app/common/http/swagger/base-api-response.decorator';
+import { BaseApiResponse } from '@app/common/decorators/base-api-response.decorator';
 import { AuthService } from '@app/modules/auth/auth.service';
 import { CurrentUser } from '@app/modules/auth/decorators/current-user.decorator';
 import { ProfileResponse } from '@app/modules/auth/dtos/profile.response';

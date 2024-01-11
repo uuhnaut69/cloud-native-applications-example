@@ -1,6 +1,6 @@
 import { env } from '@app/env';
-import { JwtPayload } from '@app/modules/auth/types/jwt';
-import { User } from '@app/modules/user/models/user.entity';
+import { JwtPayload } from '@app/core/auth/types/jwt';
+import { User } from '@app/core/user/models/user.entity';
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';

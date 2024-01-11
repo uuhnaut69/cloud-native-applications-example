@@ -1,10 +1,11 @@
 import { compare } from '@app/common/utils/hashing.utils';
 import { env } from '@app/env';
-import { SignInRequest } from '@app/modules/auth/dtos/sign-in.request';
-import { JwtPayload } from '@app/modules/auth/types/jwt';
-import { RegisterUserRequest } from '@app/modules/user/dtos/register-user.request';
-import { User } from '@app/modules/user/models/user.entity';
-import { UserService } from '@app/modules/user/user.service';
+import { SignInRequest } from '@app/core/auth/dtos/sign-in.request';
+import { SignInResponse } from '@app/core/auth/dtos/sign-in.response';
+import { JwtPayload } from '@app/core/auth/types/jwt';
+import { RegisterUserRequest } from '@app/core/user/dtos/register-user.request';
+import { User } from '@app/core/user/models/user.entity';
+import { UserService } from '@app/core/user/user.service';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import ms from 'ms';
@@ -22,12 +23,7 @@ export class AuthService {
     return await this.userService.registerNewUser(request);
   }
 
-  public async signIn(request: SignInRequest): Promise<{
-    accessToken: string;
-    accessTokenExpiresIn: number;
-    refreshToken: string;
-    refreshTokenExpiresIn: number;
-  }> {
+  public async signIn(request: SignInRequest): Promise<SignInResponse> {
     const user = await this.userService.findOneByEmail(request.email);
 
     if (!user) {

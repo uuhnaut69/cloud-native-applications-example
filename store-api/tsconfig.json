@@ -22,7 +22,7 @@
       "@app/*": ["src/*"],
       "@app/common/*": ["src/common/*"],
       "@app/infrastructure/*": ["src/infrastructure/*"],
-      "@app/modules/*": ["src/modules/*"]
+      "@app/core/*": ["src/core/*"]
     }
   }
 }

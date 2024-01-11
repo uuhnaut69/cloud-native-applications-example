@@ -1,5 +1,5 @@
-import { RoleType } from '@app/modules/user/models/enum';
-import { User } from '@app/modules/user/models/user.entity';
+import { RoleType } from '@app/core/user/models/enum';
+import { User } from '@app/core/user/models/user.entity';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class ProfileResponse {

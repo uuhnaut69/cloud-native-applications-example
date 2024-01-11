@@ -1,5 +1,5 @@
-import { CategoryResponse } from '@app/modules/product/dtos/category.response';
-import { Category } from '@app/modules/product/models/category.entity';
+import { CategoryResponse } from '@app/core/product/dtos/category.response';
+import { Category } from '@app/core/product/models/category.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';

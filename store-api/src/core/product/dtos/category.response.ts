@@ -1,4 +1,4 @@
-import { Category } from '@app/modules/product/models/category.entity';
+import { Category } from '@app/core/product/models/category.entity';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CategoryResponse {

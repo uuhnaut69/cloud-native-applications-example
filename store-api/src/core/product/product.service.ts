@@ -1,7 +1,7 @@
 import { Pageable } from '@app/common/types/pagination';
-import { ProductSearchRequest } from '@app/modules/product/dtos/product.search.request';
-import { ProductSearchResponse } from '@app/modules/product/dtos/product.search.response';
-import { Product } from '@app/modules/product/models/product.entity';
+import { ProductSearchRequest } from '@app/core/product/dtos/product.search.request';
+import { ProductSearchResponse } from '@app/core/product/dtos/product.search.response';
+import { Product } from '@app/core/product/models/product.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';

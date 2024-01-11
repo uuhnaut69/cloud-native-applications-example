@@ -1,6 +1,6 @@
 import { hash } from '@app/common/utils/hashing.utils';
-import { RegisterUserRequest } from '@app/modules/user/dtos/register-user.request';
-import { User } from '@app/modules/user/models/user.entity';
+import { RegisterUserRequest } from '@app/core/user/dtos/register-user.request';
+import { User } from '@app/core/user/models/user.entity';
 import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';

@@ -1,6 +1,6 @@
 import { BaseApiResponse } from '@app/common/decorators/base-api-response.decorator';
-import { CategoryService } from '@app/modules/product/category.service';
-import { CategoryResponse } from '@app/modules/product/dtos/category.response';
+import { CategoryService } from '@app/core/product/category.service';
+import { CategoryResponse } from '@app/core/product/dtos/category.response';
 import { Controller, Get } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 

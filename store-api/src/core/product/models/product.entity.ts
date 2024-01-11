@@ -1,5 +1,5 @@
-import { Category } from '@app/modules/product/models/category.entity';
-import { ProductImage } from '@app/modules/product/models/product-image.entity';
+import { Category } from '@app/core/product/models/category.entity';
+import { ProductImage } from '@app/core/product/models/product-image.entity';
 import {
   Column,
   CreateDateColumn,
@@ -27,9 +27,9 @@ export class Product {
 
   @ManyToMany(() => Category)
   @JoinTable({
-    name: 'product_categories',
-    joinColumn: { name: 'productId', referencedColumnName: 'id' },
-    inverseJoinColumn: { name: 'categoryId', referencedColumnName: 'id' },
+    name: 'products_categories',
+    joinColumn: { name: 'product_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'category_id', referencedColumnName: 'id' },
   })
   public categories: Category[];
 

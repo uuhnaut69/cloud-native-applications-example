@@ -1,12 +1,12 @@
 import { BaseApiResponse } from '@app/common/decorators/base-api-response.decorator';
-import { AuthService } from '@app/modules/auth/auth.service';
-import { CurrentUser } from '@app/modules/auth/decorators/current-user.decorator';
-import { ProfileResponse } from '@app/modules/auth/dtos/profile.response';
-import { SignInRequest } from '@app/modules/auth/dtos/sign-in.request';
-import { SignInResponse } from '@app/modules/auth/dtos/sign-in.response';
-import { AccessTokenGuard } from '@app/modules/auth/guards/access-token.guard';
-import { RegisterUserRequest } from '@app/modules/user/dtos/register-user.request';
-import { User } from '@app/modules/user/models/user.entity';
+import { AuthService } from '@app/core/auth/auth.service';
+import { CurrentUser } from '@app/core/auth/decorators/current-user.decorator';
+import { ProfileResponse } from '@app/core/auth/dtos/profile.response';
+import { SignInRequest } from '@app/core/auth/dtos/sign-in.request';
+import { SignInResponse } from '@app/core/auth/dtos/sign-in.response';
+import { AccessTokenGuard } from '@app/core/auth/guards/access-token.guard';
+import { RegisterUserRequest } from '@app/core/user/dtos/register-user.request';
+import { User } from '@app/core/user/models/user.entity';
 import {
   Body,
   Controller,
@@ -44,18 +44,7 @@ export class AuthController {
   })
   @Post('/sign-in')
   public async signIn(@Body() request: SignInRequest) {
-    const {
-      accessToken,
-      accessTokenExpiresIn,
-      refreshToken,
-      refreshTokenExpiresIn,
-    } = await this.authService.signIn(request);
-    return new SignInResponse(
-      accessToken,
-      accessTokenExpiresIn,
-      refreshToken,
-      refreshTokenExpiresIn,
-    );
+    return await this.authService.signIn(request);
   }
 
   @BaseApiResponse({

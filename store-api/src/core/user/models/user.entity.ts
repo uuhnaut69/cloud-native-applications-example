@@ -1,4 +1,4 @@
-import { RoleType, UserStatus } from '@app/modules/user/models/enum';
+import { RoleType, UserStatus } from '@app/core/user/models/enum';
 import {
   Column,
   CreateDateColumn,

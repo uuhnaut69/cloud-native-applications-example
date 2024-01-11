@@ -1,7 +1,7 @@
 import { BaseApiResponse } from '@app/common/decorators/base-api-response.decorator';
-import { ProductSearchRequest } from '@app/modules/product/dtos/product.search.request';
-import { ProductSearchResponse } from '@app/modules/product/dtos/product.search.response';
-import { ProductService } from '@app/modules/product/product.service';
+import { ProductSearchRequest } from '@app/core/product/dtos/product.search.request';
+import { ProductSearchResponse } from '@app/core/product/dtos/product.search.response';
+import { ProductService } from '@app/core/product/product.service';
 import { Controller, Get, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 

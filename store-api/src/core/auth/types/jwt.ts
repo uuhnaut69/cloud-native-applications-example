@@ -1,4 +1,4 @@
-import { RoleType } from '@app/modules/user/models/enum';
+import { RoleType } from '@app/core/user/models/enum';
 
 export type JwtPayload = {
   sub: string;

@@ -1,4 +1,4 @@
-import { HealthCheckController } from '@app/modules/health/health-check.controller';
+import { HealthCheckController } from '@app/core/health/health-check.controller';
 import { Module } from '@nestjs/common';
 
 @Module({

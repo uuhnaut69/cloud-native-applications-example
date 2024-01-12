@@ -18,7 +18,7 @@ const databaseOptions: DataSourceOptions & SeederOptions = {
   },
   entities: [join(__dirname, '..', '..', 'core', '**', 'models', '*.{ts,js}')],
   factories: [],
-  seeds: [],
+  seeds: [join(__dirname, '..', '..', 'seeds', '*.{ts,js}')],
 };
 
 export const dataSource = new DataSource(databaseOptions);

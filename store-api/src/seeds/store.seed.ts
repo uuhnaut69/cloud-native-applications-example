@@ -43,7 +43,7 @@ export default class StoreSeed implements Seeder {
 
     const productEntities: Product[] = [];
 
-    for (let i = 0; i < 10000; i++) {
+    for (let i = 0; i < 200000; i++) {
       productEntities.push(
         productRepo.create({
           name: `${faker.commerce.productName()}${i}`?.trim(),
@@ -61,7 +61,7 @@ export default class StoreSeed implements Seeder {
         }),
       );
 
-      if (productEntities.length === 2000) {
+      if (productEntities.length === 100) {
         await productRepo.save(productEntities);
         productEntities.length = 0;
       }

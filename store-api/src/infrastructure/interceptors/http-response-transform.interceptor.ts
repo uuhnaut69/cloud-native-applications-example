@@ -1,6 +1,6 @@
 import { IS_PAGINATION } from '@app/common/decorators/pagination.decorator';
 import { BaseResponse } from '@app/common/http/models/base.response';
-import { PaginationRequest } from '@app/common/http/models/pagination.request';
+import { PaginationSortableRequest } from '@app/common/http/models/pagination.request';
 import {
   CallHandler,
   ExecutionContext,
@@ -30,7 +30,7 @@ export class HttpResponseTransformInterceptor<T>
 
         if (isPagination) {
           const paginationRequest = context.switchToHttp().getRequest()
-            ?.query as PaginationRequest;
+            ?.query as PaginationSortableRequest;
 
           const { pageNo = 1, pageSize = 10 } = paginationRequest;
           const { items = [], total = 0 } = data;

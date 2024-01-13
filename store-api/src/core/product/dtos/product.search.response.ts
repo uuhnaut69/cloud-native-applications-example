@@ -33,7 +33,8 @@ export class ProductSearchResponse {
     this.id = product.id;
     this.name = product.name;
     this.price = product.price;
-    this.categories = product.categories.map((category) => category.name);
-    this.images = product.images.map((image) => image.imageUrl);
+    this.categories =
+      product?.categories?.map((category) => category.name) ?? [];
+    this.images = product?.images?.map((image) => image.imageUrl) ?? [];
   }
 }

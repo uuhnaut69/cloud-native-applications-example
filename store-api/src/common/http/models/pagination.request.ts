@@ -1,13 +1,26 @@
-export interface PaginationRequest {
-  pageNo?: number;
+import { ApiPropertyOptional } from '@nestjs/swagger';
 
-  pageSize?: number;
+export class PaginationSortableRequest {
+  @ApiPropertyOptional({
+    description: 'Page number',
+    default: 1,
+  })
+  public pageNo?: number = 1;
+
+  @ApiPropertyOptional({
+    description: 'Number of items per page',
+    default: 10,
+  })
+  public pageSize?: number = 10;
+
+  @ApiPropertyOptional({
+    description: 'Order field that will be used to sort',
+  })
+  public orderField?: string;
+
+  @ApiPropertyOptional({
+    description: 'Order direction that will be used to sort',
+    example: 'ASC',
+  })
+  public orderDirection?: 'ASC' | 'DESC';
 }
-
-export interface SortableRequest {
-  orderField?: string;
-
-  orderDirection?: 'ASC' | 'DESC';
-}
-
-export type PaginationSortableRequest = PaginationRequest & SortableRequest;

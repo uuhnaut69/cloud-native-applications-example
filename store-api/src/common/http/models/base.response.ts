@@ -1,4 +1,4 @@
-import { PaginationRequest } from '@app/common/http/models/pagination.request';
+import { PaginationSortableRequest } from '@app/common/http/models/pagination.request';
 
 export class ErrorResponse {}
 
@@ -18,7 +18,7 @@ export class BaseResponse<T> {
   public static paginated<T>(
     data: T,
     totalItems: number,
-    paginatedRequest: PaginationRequest,
+    paginatedRequest: PaginationSortableRequest,
   ): BaseResponse<T> {
     const response = new BaseResponse<T>();
     response.success = true;

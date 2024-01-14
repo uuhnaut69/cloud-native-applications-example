@@ -2,6 +2,11 @@ import { ApiPropertyOptional } from '@nestjs/swagger';
 
 export class PaginationSortableRequest {
   @ApiPropertyOptional({
+    description: 'Search query',
+  })
+  public searchQuery?: string;
+
+  @ApiPropertyOptional({
     description: 'Page number',
     default: 1,
   })
@@ -20,7 +25,7 @@ export class PaginationSortableRequest {
 
   @ApiPropertyOptional({
     description: 'Order direction that will be used to sort',
-    example: 'ASC',
+    enum: ['ASC', 'DESC'],
   })
   public orderDirection?: 'ASC' | 'DESC';
 }

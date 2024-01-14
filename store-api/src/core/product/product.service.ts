@@ -16,13 +16,25 @@ export class ProductService {
   public async searchProducts(
     request: ProductSearchRequest,
   ): Promise<Pageable<ProductSearchResponse>> {
-    const { categoryIds, pageNo, pageSize, orderDirection, orderField } =
-      request;
+    const {
+      searchQuery,
+      categoryIds,
+      pageNo,
+      pageSize,
+      orderDirection,
+      orderField,
+    } = request;
 
     const queryBuilder = this.productRepository
       .createQueryBuilder('product')
       .leftJoinAndSelect('product.categories', 'category')
       .leftJoinAndSelect('product.images', 'image');
+
+    if (searchQuery) {
+      queryBuilder.where('product.name ILIKE :searchQuery', {
+        searchQuery: `%${searchQuery}%`,
+      });
+    }
 
     if (categoryIds?.length) {
       queryBuilder.where('category.id IN (:...categoryIds)', {

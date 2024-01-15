@@ -1,3 +1,4 @@
+import { Inventory } from '@app/core/inventory/models/inventory.entity';
 import { Category } from '@app/core/product/models/category.entity';
 import { ProductImage } from '@app/core/product/models/product-image.entity';
 import {
@@ -7,7 +8,9 @@ import {
   JoinTable,
   ManyToMany,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
+  Relation,
   UpdateDateColumn,
 } from 'typeorm';
 
@@ -22,8 +25,10 @@ export class Product {
   @Column({ nullable: false, default: 0 })
   public price: number;
 
-  @Column({ nullable: false, default: 0 })
-  public quantity: number;
+  @OneToOne(() => Inventory, (inventory) => inventory.product, {
+    cascade: true,
+  })
+  public inventory: Relation<Inventory>;
 
   @ManyToMany(() => Category)
   @JoinTable({
@@ -31,12 +36,12 @@ export class Product {
     joinColumn: { name: 'product_id', referencedColumnName: 'id' },
     inverseJoinColumn: { name: 'category_id', referencedColumnName: 'id' },
   })
-  public categories: Category[];
+  public categories: Relation<Category[]>;
 
   @OneToMany(() => ProductImage, (image) => image.product, {
     cascade: true,
   })
-  public images: ProductImage[];
+  public images: Relation<ProductImage[]>;
 
   @CreateDateColumn({ nullable: false })
   public createdAt: Date;

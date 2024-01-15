@@ -3,21 +3,23 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  ManyToOne,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
   Relation,
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'product_images' })
-export class ProductImage {
+@Entity({ name: 'inventories' })
+export class Inventory {
   @PrimaryGeneratedColumn('uuid')
   public id: string;
 
-  @Column({ nullable: false })
-  public imageUrl: string;
+  @Column({ nullable: false, default: 0 })
+  public quantity: number;
 
-  @ManyToOne(() => Product, (product) => product.images)
+  @OneToOne(() => Product)
+  @JoinColumn({ name: 'product_id' })
   public product: Relation<Product>;
 
   @CreateDateColumn({ nullable: false })

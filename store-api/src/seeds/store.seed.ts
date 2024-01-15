@@ -48,7 +48,9 @@ export default class StoreSeed implements Seeder {
         productRepo.create({
           name: `${faker.commerce.productName()}${i}`?.trim(),
           price: +faker.commerce.price(),
-          quantity: 100,
+          inventory: {
+            quantity: 100,
+          },
           images: [
             {
               imageUrl: faker.image.url(),

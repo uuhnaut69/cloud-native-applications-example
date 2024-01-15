@@ -9,7 +9,7 @@ import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Order')
 @Controller({
-  path: 'order',
+  path: 'orders',
   version: '1',
 })
 export class OrderController {

@@ -2,6 +2,8 @@
 
 An example of a cloud native application architecture using Kubernetes, Helm, Docker and Skaffold.
 
+![Architecture](./assets/banner.jpg)
+
 ## Prerequisites
 
 - [Docker](https://www.docker.com/)
@@ -20,8 +22,8 @@ An example of a cloud native application architecture using Kubernetes, Helm, Do
    helm repo update
    ```
 
-2. Start Skaffold:
+2. Start Skaffold in dev mode:
 
    ```bash
-   skaffold dev --port-forward
+   skaffold dev --port-forward --status-check=false
    ```

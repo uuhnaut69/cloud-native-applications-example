@@ -1,3 +1,5 @@
+architecture: "standalone"
+
 global:
   postgresql:
     auth:

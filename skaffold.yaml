@@ -1,7 +1,7 @@
 apiVersion: skaffold/v4beta8
 kind: Config
 metadata:
-  name: cloud-native-applications-example
+  name: cloud-native-applications
 build:
   artifacts:
     - image: "uuhnaut69/store-api"
@@ -10,11 +10,30 @@ build:
         dockerfile: Dockerfile
       sync:
         infer:
-          - "**./*"
+          - "**/*"
+
+portForward:
+  - resourceType: service
+    resourceName: postgresql
+    namespace: default
+    port: 5432
+    localPort: 5432
+  - resourceType: service
+    resourceName: store-api
+    namespace: default
+    port: 3000
+    localPort: 3000
 
 deploy:
   helm:
     releases:
+      - name: postgresql
+        repo: https://charts.bitnami.com/bitnami
+        remoteChart: postgresql
+        valuesFiles:
+          - helm/postgresql/values.yaml
+        wait: true
+
       - name: store-api
         chartPath: helm/store-api
         valuesFiles:

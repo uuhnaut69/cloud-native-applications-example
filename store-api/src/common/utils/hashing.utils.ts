@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 export function hash(textInput: string): Promise<string> {
   return bcrypt.hash(textInput, 10);

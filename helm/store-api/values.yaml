@@ -102,21 +102,31 @@ tolerations: []
 affinity: {}
 
 liveness:
-  initialDelaySeconds: 30
+  initialDelaySeconds: 10
   port: http
-  path: /v1/health/check
-  failureThreshold: 3
+  path: /api/v1/health/check
+  failureThreshold: 10
   successThreshold: 1
-  timeoutSeconds: 30
-  periodSeconds: 30
+  timeoutSeconds: 10
+  periodSeconds: 10
 
 readiness:
-  initialDelaySeconds: 30
+  initialDelaySeconds: 10
   port: http
-  path: /v1/health/check
-  failureThreshold: 3
+  path: /api/v1/health/check
+  failureThreshold: 10
   successThreshold: 1
   timeoutSeconds: 10
   periodSeconds: 10
 
 envs:
+  - name: POSTGRES_URL
+    value: "postgres://postgres:sup3rs3cr3t@postgresql.default.svc.cluster.local:5432/postgres"
+  - name: JWT_SECRET
+    value: "secret"
+  - name: JWT_ACCESS_TOKEN_EXPIRES_IN
+    value: "1d"
+  - name: JWT_REFRESH_SECRET
+    value: "refreshsecret"
+  - name: JWT_REFRESH_TOKEN_EXPIRES_IN
+    value: "7d"

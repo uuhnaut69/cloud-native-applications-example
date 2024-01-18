@@ -12,19 +12,12 @@ build:
         infer:
           - "**/*"
 
-portForward:
-  - resourceType: service
-    resourceName: postgresql
-    namespace: default
-    port: 5432
-    localPort: 5432
-  - resourceType: service
-    resourceName: store-api
-    namespace: default
-    port: 3000
-    localPort: 3000
+manifests:
+  rawYaml:
+    - ./k8s/*.yaml
 
 deploy:
+  kubectl: {}
   helm:
     releases:
       - name: postgresql

@@ -25,7 +25,7 @@ An example of a cloud native application architecture using Kubernetes, Helm, Do
 2. Start Skaffold in dev mode:
 
    ```bash
-   skaffold dev --port-forward --status-check=false
+   skaffold dev --port-forward
    ```
 
 ## Contributing

@@ -3,6 +3,8 @@ kind: Config
 metadata:
   name: cloud-native-applications
 build:
+  tagPolicy:
+    gitCommit: {}
   artifacts:
     - image: "uuhnaut69/store-api"
       context: store-api

@@ -44,7 +44,7 @@ async function bootstrap() {
 
   await app.register(helmet);
 
-  await app.listen(env.port);
+  await app.listen(env.port, '0.0.0.0');
 }
 
 bootstrap();

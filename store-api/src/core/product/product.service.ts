@@ -27,8 +27,7 @@ export class ProductService {
 
     const queryBuilder = this.productRepository
       .createQueryBuilder('product')
-      .leftJoinAndSelect('product.categories', 'category')
-      .leftJoinAndSelect('product.images', 'image');
+      .leftJoinAndSelect('product.categories', 'category');
 
     if (searchQuery) {
       queryBuilder.where('product.name ILIKE :searchQuery', {

@@ -1,13 +1,11 @@
 import { Inventory } from '@app/core/inventory/models/inventory.entity';
 import { Category } from '@app/core/product/models/category.entity';
-import { ProductImage } from '@app/core/product/models/product-image.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
   JoinTable,
   ManyToMany,
-  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   Relation,
@@ -43,10 +41,8 @@ export class Product {
   })
   public categories: Relation<Category[]>;
 
-  @OneToMany(() => ProductImage, (image) => image.product, {
-    cascade: true,
-  })
-  public images: Relation<ProductImage[]>;
+  @Column({ nullable: false })
+  public image: string;
 
   @CreateDateColumn({ nullable: false })
   public createdAt: Date;

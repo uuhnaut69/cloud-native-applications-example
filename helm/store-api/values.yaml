@@ -126,14 +126,14 @@ envs:
     valueFrom:
       secretKeyRef:
         name: store-api-secret
-        key: jwtSecret
+        key: jwt-secret
   - name: JWT_ACCESS_TOKEN_EXPIRES_IN
     value: "1d"
   - name: JWT_REFRESH_SECRET
     valueFrom:
       secretKeyRef:
         name: store-api-secret
-        key: jwtRefreshSecret
+        key: jwt-refresh-secret
   - name: JWT_REFRESH_TOKEN_EXPIRES_IN
     value: "7d"
   - name: ELASTIC_APM_ACTIVE

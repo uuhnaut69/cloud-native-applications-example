@@ -25,16 +25,15 @@ export class ProductSearchResponse {
 
   @ApiProperty({
     example: ['https://example.com/image1.jpg'],
-    isArray: true,
   })
-  public images: string[];
+  public image: string;
 
   constructor(product: Product) {
     this.id = product.id;
     this.name = product.name;
     this.price = product.price;
+    this.image = product.image;
     this.categories =
       product?.categories?.map((category) => category.name) ?? [];
-    this.images = product?.images?.map((image) => image.imageUrl) ?? [];
   }
 }

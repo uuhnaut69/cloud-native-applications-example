@@ -6,11 +6,7 @@ export const env = {
   port: process.env.PORT || 3000,
   database: {
     postgres: {
-      host: process.env.POSTGRES_HOST,
-      port: +process.env.POSTGRES_PORT,
-      name: process.env.POSTGRES_DB,
-      username: process.env.POSTGRES_USERNAME,
-      password: process.env.POSTGRES_PASSWORD,
+      url: process.env.POSTGRES_URL,
     },
   },
   auth: {

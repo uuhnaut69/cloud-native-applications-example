@@ -20,6 +20,9 @@ export class Product {
   @Column({ nullable: false })
   public name: string;
 
+  @Column({ nullable: false, type: 'text' })
+  public description: string;
+
   @Column({
     nullable: false,
     type: 'decimal',

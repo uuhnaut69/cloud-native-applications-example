@@ -3,4 +3,7 @@ architecture: "standalone"
 global:
   postgresql:
     auth:
-      postgresPassword: "sup3rs3cr3t"
+      existingSecret: "postgresql-secret"
+      secretKeys:
+        adminPasswordKey: "postgresql-password"
+        userPasswordKey: "postgresql-password"

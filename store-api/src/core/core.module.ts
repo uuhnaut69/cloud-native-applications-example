@@ -3,6 +3,7 @@ import { HealthModule } from '@app/core/health/health.module';
 import { InventoryModule } from '@app/core/inventory/inventory.module';
 import { OrderModule } from '@app/core/order/order.module';
 import { ProductModule } from '@app/core/product/product.module';
+import { SeedModule } from '@app/core/seed/seed.module';
 import { UserModule } from '@app/core/user/user.module';
 import { Module } from '@nestjs/common';
 
@@ -14,6 +15,7 @@ import { Module } from '@nestjs/common';
     OrderModule,
     InventoryModule,
     HealthModule,
+    SeedModule,
   ],
 })
 export class CoreModule {}

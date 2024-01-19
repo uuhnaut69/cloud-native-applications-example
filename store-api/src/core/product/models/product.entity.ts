@@ -22,7 +22,12 @@ export class Product {
   @Column({ nullable: false })
   public name: string;
 
-  @Column({ nullable: false, default: 0 })
+  @Column({
+    nullable: false,
+    type: 'decimal',
+    precision: 64,
+    scale: 18,
+  })
   public price: number;
 
   @OneToOne(() => Inventory, (inventory) => inventory.product, {

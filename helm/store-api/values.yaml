@@ -136,3 +136,5 @@ envs:
         key: jwtRefreshSecret
   - name: JWT_REFRESH_TOKEN_EXPIRES_IN
     value: "7d"
+  - name: ELASTIC_APM_ACTIVE
+    value: "false"

@@ -1,3 +1,7 @@
+import 'dotenv/config';
+import 'elastic-apm-node/start';
+
+import { AppModule } from '@app/app.module';
 import { env } from '@app/env';
 import compression from '@fastify/compress';
 import helmet from '@fastify/helmet';
@@ -9,7 +13,6 @@ import {
 } from '@nestjs/platform-fastify';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { initializeTransactionalContext } from 'typeorm-transactional';
-import { AppModule } from './app.module';
 
 async function bootstrap() {
   initializeTransactionalContext();

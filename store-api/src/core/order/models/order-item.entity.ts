@@ -19,6 +19,14 @@ export class OrderItem {
   @Column({ nullable: false, default: 0 })
   public quantity: number;
 
+  @Column({
+    nullable: false,
+    type: 'decimal',
+    precision: 64,
+    scale: 18,
+  })
+  public price: number;
+
   @ManyToOne(() => Order, {
     nullable: false,
   })

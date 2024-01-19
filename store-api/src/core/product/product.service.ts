@@ -4,7 +4,7 @@ import { ProductSearchResponse } from '@app/core/product/dtos/product.search.res
 import { Product } from '@app/core/product/models/product.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 
 @Injectable()
 export class ProductService {
@@ -59,5 +59,13 @@ export class ProductService {
       items: items.map((item) => new ProductSearchResponse(item)),
       total,
     };
+  }
+
+  public async getProductByIds(ids: string[]): Promise<Product[]> {
+    return this.productRepository.find({
+      where: {
+        id: In(ids),
+      },
+    });
   }
 }

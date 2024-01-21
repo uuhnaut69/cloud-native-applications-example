@@ -6,11 +6,7 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
 const databaseOptions: DataSourceOptions = {
   type: 'postgres',
-  host: env.database.postgres.host,
-  port: env.database.postgres.port,
-  database: env.database.postgres.name,
-  username: env.database.postgres.username,
-  password: env.database.postgres.password,
+  url: env.database.postgres.url,
   synchronize: true,
   logging: env.isProduction ? ['log', 'warn', 'error'] : 'all',
   logger: new TypeOrmLogger(),

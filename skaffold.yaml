@@ -10,6 +10,8 @@ build:
       context: store-api
       docker:
         dockerfile: Dockerfile
+        cacheFrom:
+          - "uuhnaut69/store-api:latest"
       sync:
         infer:
           - "**/*"

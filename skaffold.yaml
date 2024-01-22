@@ -11,8 +11,9 @@ build:
       docker:
         dockerfile: Dockerfile
       sync:
-        infer:
-          - "**/*"
+        manual:
+          - dest: .
+            src: "store-api/**/*"
 
 manifests:
   rawYaml:

@@ -1,8 +1,6 @@
-import 'dotenv/config';
-import 'elastic-apm-node/start';
-
 import { AppModule } from '@app/app.module';
 import { env } from '@app/env';
+import { logger } from '@app/infrastructure/logger/winston.logger';
 import compression from '@fastify/compress';
 import helmet from '@fastify/helmet';
 import { VersioningType } from '@nestjs/common';
@@ -19,7 +17,10 @@ async function bootstrap() {
 
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
-    new FastifyAdapter({}),
+    new FastifyAdapter(),
+    {
+      logger: logger,
+    },
   );
 
   app.setGlobalPrefix('api');

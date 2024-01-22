@@ -3,6 +3,7 @@ import 'dotenv/config';
 export const env = {
   isProduction: process.env.NODE_ENV === 'production',
   appVersion: process.env.npm_package_version,
+  logLevel: process.env.LOG_LEVEL || 'debug',
   port: process.env.PORT || 3000,
   database: {
     postgres: {

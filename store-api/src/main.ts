@@ -1,3 +1,6 @@
+import 'dotenv/config';
+import 'elastic-apm-node/start';
+
 import { AppModule } from '@app/app.module';
 import { env } from '@app/env';
 import { logger } from '@app/infrastructure/logger/winston.logger';

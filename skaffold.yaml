@@ -9,9 +9,8 @@ build:
     - image: "uuhnaut69/store-api"
       context: store-api
       sync:
-        manual:
-          - dest: .
-            src: "src/**/*"
+        infer:
+          - "**/*"
 
 manifests:
   rawYaml:
